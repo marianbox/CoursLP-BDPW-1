@@ -26,6 +26,17 @@ print_r2($articles);
 ?>
 
 
+<?php
+////////////////MONTRER la liste d'article
+$articlesManager = new articlesManager($bdd);
+$ListArticles = $articlesManager->getList2();
+print_r2($articles);
+?>
+
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +49,8 @@ print_r2($articles);
     <body>
         <!-- Responsive navbar-->
         <?php include 'includes/menu.inc.php';?>
+
+
         <!-- Page Content-->
         <div class="container px-4 px-lg-5">
             <!-- Heading Row-->
@@ -53,36 +66,29 @@ print_r2($articles);
             
 
 
-            <!-- Content Row-->
+            <!-- Content Row--> 
             <div class="row gx-4 gx-lg-5">
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="card-title">Card One</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-                        </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
-                    </div>
-                </div>
+                
+            <?php
+            foreach ($ListArticles as $key => $articles){   //////a chaque fois que tu trouve un article tu garde l'id dans cles et tu le compare(avec as comme alias) a l'article 
 
+            
+        
+            ?>
                 <div class="col-md-4 mb-5">
                     <div class="card h-100">
+                    <img src="" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h2 class="card-title">Card Two</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.</p>
+                            <h2 class="card-title"><?= $articles->getTitre();?></h2>
+                            <p class="card-text"><?= $articles->getTexte();?></p>
                         </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
+                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!"><?=$articles->getDate();?></a></div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="card-title">Card Three</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-                        </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
-                    </div>
-                </div>
+                
+                        <?php
+                        }
+                        ?>
             </div>
         </div>
 

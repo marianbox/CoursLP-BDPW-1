@@ -56,6 +56,11 @@ function set_getLastInsertId($_getLastInsertId){
 }
 
 
+
+
+
+
+/////////////GET ID RECUP LARTICLE A PARTIR DE LID
 public function get($id){
     //prepare une requete de type select avec une clause WHERE  
     $sql='SELECT * FROM articles WHERE id = :id';
@@ -73,6 +78,84 @@ $articles->hydrate($donnees);
 return $articles;
 
 }
+
+
+
+
+
+
+
+////////////////AFFICHER LISTE DES ARTICLES
+public function getList(){
+    $listArticles =[]; ///on creer une liste vide ou ont mettra tous les articles
+
+
+    //prepare une requete de type select
+    $sql='SELECT * FROM articles';
+    $req = $this->bdd->prepare($sql);
+
+//////execution de la requete avec attribution des valeurs
+$req->execute();
+
+/////on stocke les données obtenues dans un tableau
+while ($donnees = $req->fetch(PDO::FETCH_ASSOC)){///tant que il y a des article alors on boucle
+    ////on cree des objets avec les données issue de la bdd
+    $articles = new articles();
+    $articles->hydrate($donnees);
+    $listArticles[] = $articles;
+}
+///print_r2($listArticles)
+return $listArticles;
+
+}
+
+
+
+
+
+/////////////////GET LIST AVEC DATE EN FRANCAIS
+
+public function getList2(){
+    $listArticles =[]; ///on creer une liste vide ou ont mettra tous les articles
+
+
+    //prepare une requete de type select
+    $sql= 'SELECT id, ' 
+    .'titre, '
+    .'texte, '
+    .'publie, '
+    .'DATE_FORMAT(date, "%d/%m/%Y")as date '
+    .'FROM articles ';
+    
+    $req = $this->bdd->prepare($sql);
+
+//////execution de la requete avec attribution des valeurs
+$req->execute();
+
+/////on stocke les données obtenues dans un tableau
+while ($donnees = $req->fetch(PDO::FETCH_ASSOC)){///tant que il y a des article alors on boucle
+    ////on cree des objets avec les données issue de la bdd
+    $articles = new articles();
+    $articles->hydrate($donnees);
+    $listArticles[] = $articles;
+}
+///print_r2($listArticles)
+return $listArticles;
+
+}
+
+/*public function add(articles $articles){
+    $sql = "INSERT INTO articles" .
+    "(titre,texte,publie,date)"
+}*/
+
+
+
+
+
+
+
+
 
 
 
