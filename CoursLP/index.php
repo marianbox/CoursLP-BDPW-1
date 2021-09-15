@@ -77,7 +77,8 @@ print_r2($articles);
             ?>
                 <div class="col-md-4 mb-5">
                     <div class="card h-100">
-                    <img src="img\putin.jpg" class="card-img-top" alt="...">
+                    <img class="card-img-top" src="img/<?= $articles->getId() ?>.jpg">
+                   
                         <div class="card-body">
                             <h2 class="card-title"><?= $articles->getTitre();?></h2>
                             <p class="card-text"><?= $articles->getTexte();?></p>
