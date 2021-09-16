@@ -127,6 +127,7 @@ public function getList2(){
     .'DATE_FORMAT(date, "%d/%m/%Y")as date '
     .'FROM articles ';
     
+    
     $req = $this->bdd->prepare($sql);
 
 //////execution de la requete avec attribution des valeurs
@@ -142,7 +143,60 @@ while ($donnees = $req->fetch(PDO::FETCH_ASSOC)){///tant que il y a des article 
 ///print_r2($listArticles)
 return $listArticles;
 
+
 }
+
+
+
+
+////getlist avec limite de 2 article par page
+public function getList3($depart,$limit){
+    $listArticles =[]; ///on creer une liste vide ou ont mettra tous les articles
+
+
+    //prepare une requete de type select
+    $sql= 'SELECT id, ' 
+    .'titre, '
+    .'texte, '
+    .'publie, '
+    .'DATE_FORMAT(date, "%d/%m/%Y")as date '
+    .'FROM articles '
+    .'LIMIT :depart, :limit';
+    
+    $req = $this->bdd->prepare($sql);
+
+    $req->bindValue(':depart', $depart, PDO::PARAM_INT);
+    $req->bindValue(':limit', $limit, PDO::PARAM_INT);
+
+//////execution de la requete avec attribution des valeurs
+$req->execute();
+
+/////on stocke les données obtenues dans un tableau
+while ($donnees = $req->fetch(PDO::FETCH_ASSOC)){///tant que il y a des article alors on boucle
+    ////on cree des objets avec les données issue de la bdd
+    $articles = new articles();
+    $articles->hydrate($donnees);
+    $listArticles[] = $articles;
+}
+///print_r2($listArticles)
+return $listArticles;
+
+}
+
+
+public function countArticlesPublie(){
+    $sql = "SELECT COUNT(*) as total FROM articles";
+    $req = $this->bdd->prepare($sql);
+    $req->execute();
+    $count = $req->fetch(PDO::FETCH_ASSOC);
+    $total = $count['total'];
+    return $total;
+}
+
+
+
+
+
 
 /*public function add(articles $articles){
     $sql = "INSERT INTO articles" .
