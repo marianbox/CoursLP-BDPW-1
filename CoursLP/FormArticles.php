@@ -21,7 +21,7 @@
         $articlesManager = new articlesManager($bdd);
         $articlesManager->addArticles($articles);
             
-        //var_dump($articleManager)
+        //var_dump($articlesManager)
     
         // Traitement de l'image
 
@@ -33,11 +33,19 @@
             . '.' . $fileInfos['extension']); ///ont renomme l'image par le dernier id et ont lui rajoute l'extension   
 
 
-            // déplace un objet du tmp vers l'endroit choisi
+        }
+        if($articlesManager->get_result() == true){
+            $_SESSION['notification']['result'] = 'success';
+            $_SESSION['notification']['message'] = 'votre article est ajouter';
+        }
+        else{
+            $_SESSION['notification']['result'] = 'danger';
+            $_SESSION['notification']['message'] = 'une erreur est survenue pendant la creation';
+        }
 
         
-        }   
-    header("Location: index.php"); 
+        
+    header("Location: index.php"); ///Retour a l'index apres avoir creer le fichier
     exit();
     }else{
 
