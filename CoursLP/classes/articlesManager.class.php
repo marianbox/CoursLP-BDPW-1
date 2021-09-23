@@ -194,7 +194,27 @@ public function countArticlesPublie(){
 }
 
 
+public function addArticles(articles $articles){
+    $sql = "INSERT INTO articles "
+    ."(titre, texte, date, publie)"
+    ."VALUES (:titre, :texte , :date , :publie)";
+        $req = $this->bdd->prepare($sql); // Prépare la requette en ayant effectuer la connexion au préalable
+        $req->bindValue(':titre', $articles->getTitre(), PDO::PARAM_STR);
+        $req->bindValue(':texte', $articles->getTexte(), PDO::PARAM_STR);
+        $req->bindValue(':date', $articles->getDate(), PDO::PARAM_STR);
+        $req->bindValue(':publie', $articles->getPublie(), PDO::PARAM_INT);
 
+        $req->execute();
+        if ($req->errorCode() == 00000){
+            $this->_result = true;
+            $this->_getLastInsertId = $this->bdd->lastInsertId();
+        }
+        else {
+            $this->_result = false;
+        }
+        return $this;
+    
+}
 
 
 

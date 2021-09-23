@@ -64,10 +64,11 @@ class articles{
     
 
 
+
 public function hydrate($donnees){
 
 
-/////////////////////////ID
+    /////////////////////////ID
 
     if (isset($donnees['id'])){
         $this->id = $donnees['id'];
@@ -78,7 +79,7 @@ public function hydrate($donnees){
     }
 
 
-///////////////TITRE
+    ///////////////TITRE
 
     if (isset($donnees['titre'])){
         $this->titre = $donnees['titre'];
@@ -89,7 +90,7 @@ public function hydrate($donnees){
     }
 
 
-///////////texte
+    ///////////texte
 
     if (isset($donnees['texte'])){
         $this->texte = $donnees['texte'];
@@ -99,7 +100,7 @@ public function hydrate($donnees){
         $this->texte = '';
     }
 
-/////////date
+    /////////date
 
 
     if (isset($donnees['date'])){
@@ -112,7 +113,7 @@ public function hydrate($donnees){
 
 
 
-////////publie
+    ////////publie
 
     if (isset($donnees['publie'])){
         $this->publie = $donnees['publie'];
