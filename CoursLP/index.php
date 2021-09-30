@@ -1,5 +1,7 @@
 <?php  
-require_once 'config/init.conf.php' ;?>
+require_once 'config/init.conf.php' ;
+print_r2($_SESSION);
+?>
 
 
 
@@ -87,6 +89,23 @@ $ListArticles = $articlesManager->getList3($indexDepart, __nb_articles_par_page)
 
         <!-- Page Content-->
         <div class="container px-4 px-lg-5">
+
+            <?php
+            if (isset($_SESSION['notification'])){
+            ?>
+
+            <div class="alert alert-<?= $_SESSION['notification']['result'] ?> alert-dismissible mt-3 " role="alert">
+                <?= $_SESSION['notification']['message'] ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+                
+            <?php
+            unset($_SESSION['notification']);
+            }
+            ?>
+
+
+
             <!-- Heading Row-->
             <div class="row gx-4 gx-lg-5 align-items-center my-5">
                 

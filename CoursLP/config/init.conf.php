@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 //affichage des erreurs et avertissement PHP
 error_reporting(E_ALL);
