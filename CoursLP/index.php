@@ -149,8 +149,6 @@ $ListArticles = $articlesManager->getList3($indexDepart, __nb_articles_par_page)
 
 
 
-
-
             <?php//////////////////////////////////PAGINATION AUTO INCREMENT?>
             <div class="row mt-3">
                 <div class="col-12">

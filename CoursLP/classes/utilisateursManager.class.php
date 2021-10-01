@@ -60,6 +60,76 @@ function set_getLastInsertId($_getLastInsertId){
 
 
 
+function getbyemail($email){
+    $sql = 'SELECT * FROM utilisateurs WHERE email = :email';
+    $req = $this->bdd->prepare($sql);
+
+    $req->bindValue(':email',$email,PDO::PARAM_STR);
+    $req->execute();
+
+    $donnees = $req->fetch(PDO::FETCH_ASSOC);
+    $utilisateurs = new utilisateurs();
+    $utilisateurs->hydrate($donnees);
+    return $utilisateurs;
+}
+
+
+/*
+
+public function getbysid($sid) {
+    // Prépare une requette SELECT avec une clause WHERE selon l'id.
+    $sql = 'SELECT * FROM utilisateurs WHERE sid = :sid';
+    $req = $this->bdd->prepare($sql);
+    // Exécution de la requête avec attribution des valeurs aux marqueurs nominatifs.
+    $req->bindValue(':sid', $sid, PDO::PARAM_STR);
+    $req->execute();
+}*/
+
+
+
+public function getbysid($sid) {
+    // Prépare une requette SELECT avec une clause WHERE selon l'id.
+    $sql = 'SELECT * FROM utilisateurs WHERE sid = :sid';
+    $req = $this->bdd->prepare($sql);
+    // Exécution de la requête avec attribution des valeurs aux marqueurs nominatifs.
+    $req->bindValue(':sid', $sid, PDO::PARAM_STR);
+    $req->execute();
+    // On stock les données dans un tableau
+    $donnees = $req->fetch(PDO::FETCH_ASSOC);
+    
+    $utilisateur = new utilisateurs();
+    $utilisateur->hydrate($donnees);
+    
+    return $utilisateur;
+}
+
+
+
+
+public function updatebyemail(utilisateurs $utilisateurs){
+    $sql='UPDATE utilisateurs SET sid = :sid WHERE email=:email';
+    $req=$this->bdd->prepare($sql);
+    $req->BindValue(':email', $utilisateurs->getemail(),PDO::PARAM_STR);
+    $req->BindValue(':sid', $utilisateurs->getsid(),PDO::PARAM_STR);
+    $req->execute();
+
+    if($req->errorCode()==00000){
+        $this->_result=true;
+        
+    }
+    else{
+        $this->_result = false;
+    
+    }
+
+    return $this;
+}
+
+
+
+
+
+
 
 /////////////GET ID RECUP utilisateurs A PARTIR DE LID
 public function get($id){
@@ -205,7 +275,7 @@ public function addUtilisateurs(utilisateurs $utilisateurs){
         $req->bindValue(':nom', $utilisateurs->getnom(), PDO::PARAM_STR);
         $req->bindValue(':prenom', $utilisateurs->getprenom(), PDO::PARAM_STR);
         $req->bindValue(':email', $utilisateurs->getemail(), PDO::PARAM_STR);
-        $req->bindValue(':mdp', $utilisateurs->getmdp(), PDO::PARAM_INT);
+        $req->bindValue(':mdp', $utilisateurs->getmdp(), PDO::PARAM_STR);
 
 
 

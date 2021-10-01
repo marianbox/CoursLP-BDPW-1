@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 30 sep. 2021 à 11:48
+-- Généré le : ven. 01 oct. 2021 à 18:27
 -- Version du serveur :  8.0.21
 -- Version de PHP : 7.3.21
 
@@ -71,7 +71,20 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `mdp` varchar(255) NOT NULL,
   `sid` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `utilisateurs`
+--
+
+INSERT INTO `utilisateurs` (`id`, `nom`, `prenom`, `email`, `mdp`, `sid`) VALUES
+(1, 'lemaitre', 'marian', 'marian.lemaitre@live.fr', '0', NULL),
+(2, 'test', 'test', 'gzsdfgkzj@,fsndjfhs', '0', NULL),
+(3, 'Batiste', 'test ', 'ngfskis@fsdjfhsj', 'opo', NULL),
+(4, 'User', 'test', 'test', '91c6969748311db99e74d691ea075f96df628eec', NULL),
+(5, 'ouep', 'oeup2', 'oeup2@gmail.com', '446aae6be397dfa90566016b2b4280af2d44c520', NULL),
+(6, 'fdszfskjo', 'hfszjkhfiozj', 'nfsdjkfnjkzsnfkz@fsds', '227d6a63dfece38e0c80c31ba5c0812e9a216d3a', NULL),
+(20, 'papa', 'papa', 'papa@papa.fr', '$2y$10$Va7ewfdjNFSW7vL7IQz9YeVku/Nz2dEb7WRNusgWAr5nMLestu5ne', 'c8d3c7b918eccae09958f0baac085836');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
