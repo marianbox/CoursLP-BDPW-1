@@ -110,7 +110,7 @@ $ListArticles = $articlesManager->getList3($indexDepart, __nb_articles_par_page)
             <div class="row gx-4 gx-lg-5 align-items-center my-5">
                 
                 <div class="col-12">
-                    <h1 class="font-weight-light"><?php echo "pour rentrer dans le parking il faut utiliser l'app web" ?></h1>
+                    <h1 class="font-weight-light"><?php echo "Bienvenue sur le site d'article" ?></h1>
                     <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
                     
                 </div>
